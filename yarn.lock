@@ -2636,6 +2636,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-navigation/material-top-tabs@npm:^6.6.14":
+  version: 6.6.14
+  resolution: "@react-navigation/material-top-tabs@npm:6.6.14"
+  dependencies:
+    color: ^4.2.3
+    warn-once: ^0.1.0
+  peerDependencies:
+    "@react-navigation/native": ^6.0.0
+    react: "*"
+    react-native: "*"
+    react-native-pager-view: ">= 4.0.0"
+    react-native-tab-view: ">= 3.0.0"
+  checksum: 565919b1a9a948ab30d6448dd2d59035cb05f1d87d559f3710072a0795b344fdcc543f2eeb8884b5d699a965cac7db5d88641ba87ec7544e23245404ffb860ec
+  languageName: node
+  linkType: hard
+
 "@react-navigation/native@npm:^6.1.18":
   version: 6.1.18
   resolution: "@react-navigation/native@npm:6.1.18"
@@ -3122,6 +3138,7 @@ __metadata:
     "@react-native/typescript-config": 0.74.87
     "@react-navigation/bottom-tabs": ^6.6.1
     "@react-navigation/drawer": ^6.7.2
+    "@react-navigation/material-top-tabs": ^6.6.14
     "@react-navigation/native": ^6.1.18
     "@react-navigation/stack": ^6.4.1
     "@types/react": ^18.2.6
@@ -3129,16 +3146,20 @@ __metadata:
     babel-jest: ^29.6.3
     eslint: ^8.19.0
     jest: ^29.6.3
+    lottie-react-native: ^6.7.2
     prettier: 2.8.8
     react: 18.2.0
     react-native: 0.74.5
     react-native-fast-image: ^8.6.3
     react-native-gesture-handler: ^2.18.1
     react-native-linear-gradient: ^2.8.3
+    react-native-pager-view: ^6.3.4
     react-native-reanimated: ^3.15.0
     react-native-safe-area-context: ^4.10.8
     react-native-screens: ^3.34.0
+    react-native-swiper: ^1.6.0
     react-native-swiper-flatlist: ^3.2.4
+    react-native-tab-view: ^3.5.2
     react-native-vector-icons: ^10.1.0
     react-test-renderer: 18.2.0
     typescript: 5.0.4
@@ -6902,6 +6923,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-react-native@npm:^6.7.2":
+  version: 6.7.2
+  resolution: "lottie-react-native@npm:6.7.2"
+  peerDependencies:
+    "@dotlottie/react-player": ^1.6.1
+    "@lottiefiles/react-lottie-player": ^3.5.3
+    react: "*"
+    react-native: ">=0.46"
+    react-native-windows: ">=0.63.x"
+  peerDependenciesMeta:
+    "@dotlottie/react-player":
+      optional: true
+    "@lottiefiles/react-lottie-player":
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: 8b14ca10f4f0e75505ee5485b47c31db2146baea1634e66f0d485abb8a44ba2019930239970015cedaad627e306828be977b4797256aa2cc143b476ed31585fa
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0":
   version: 10.4.3
   resolution: "lru-cache@npm:10.4.3"
@@ -8055,7 +8096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -8197,6 +8238,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-pager-view@npm:^6.3.4":
+  version: 6.3.4
+  resolution: "react-native-pager-view@npm:6.3.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 828975c5da231223bdf157e7a37b26b6d6edb6ba4e2db26c13fbcaccfac3bca53198cc2943e815bdc40516d717c66d0de21572a4bfc432803bdd0d987afd234a
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:^3.15.0":
   version: 3.15.0
   resolution: "react-native-reanimated@npm:3.15.0"
@@ -8249,6 +8300,28 @@ __metadata:
   peerDependencies:
     react-native: ">=0.59.0"
   checksum: c36c16e422faf1f4f22af72fbd4c50be0f307e59549b50fd43b930f045d6f65b6f85332a447b338b52aa4761a633bbe8f27a11faa61b3b8d92ed0be2088655b9
+  languageName: node
+  linkType: hard
+
+"react-native-swiper@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "react-native-swiper@npm:1.6.0"
+  dependencies:
+    prop-types: ^15.5.10
+  checksum: 21e7a270dce6d249f718377a8aa2578c9a89b2b076710f6a60dc849ace5b47ade9e071345607947e738c0fdb06b17d9dad6ef99a8f76d7072b13bf3655026225
+  languageName: node
+  linkType: hard
+
+"react-native-tab-view@npm:^3.5.2":
+  version: 3.5.2
+  resolution: "react-native-tab-view@npm:3.5.2"
+  dependencies:
+    use-latest-callback: ^0.1.5
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-pager-view: "*"
+  checksum: bd287e5543881aa662ee55418a3bd5dacb25033425a9fcb0fff21c3a3b96f956af1a77cd9bab4e7a8e94590080a5d8e3cb99cfa8613b19bf6da24bfc9b4942d4
   languageName: node
   linkType: hard
 
@@ -9656,6 +9729,15 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"use-latest-callback@npm:^0.1.5":
+  version: 0.1.11
+  resolution: "use-latest-callback@npm:0.1.11"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: cc6df404a4ed3a39d0eb014a815c2e568a6abbe8c5ff09f9205a08bf68e86201826ed633865a6056ca0fd9581e0e7e70f18ca26c592a9eaccea5d244cf283b1f
   languageName: node
   linkType: hard
 

@@ -123,7 +123,8 @@ const BottomTab = () => {
                                 Pro
                             </Text>
                         </View>
-                    )
+                    ),
+                    tabBarStyle: {display: 'none'}
                 }}
             />
 

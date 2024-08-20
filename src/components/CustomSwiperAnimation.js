@@ -5,17 +5,17 @@ import {
 } from 'react-native'
 
 import { SwiperFlatList } from 'react-native-swiper-flatlist'
-import FastImage from 'react-native-fast-image'
 import { colors } from '../style/Colors';
+import LottieView from 'lottie-react-native';
 
 const width = Dimensions.get('screen').width;
-const CustomSwiper = React.memo(({ item, height }) => {
+const CustomSwiperAnimation = React.memo(({ item, }) => {
 
     return (
         <SwiperFlatList
             data={item}
             autoplay
-            autoplayDelay={3}
+            autoplayDelay={5}
             autoplayLoop
             showPagination
             paginationActiveColor={colors.secondaryColor}
@@ -24,18 +24,20 @@ const CustomSwiper = React.memo(({ item, height }) => {
             paginationStyleItem={styles.paginationStyleItem}
             style={styles.swiper}
             renderItem={({ item, index }) =>
-                <FastImage
+              
+                <LottieView
                     source={item}
-                    style={{ ...styles.img, height: height}}
-                    resizeMode={FastImage.resizeMode.cover}
                     key={index}
+                    autoPlay
+                    loop
+                    style={styles.img}
                 />
             }
         />
     )
 })
 
-export default CustomSwiper
+export default CustomSwiperAnimation
 
 const styles = StyleSheet.create({
     swiper: {
@@ -48,8 +50,7 @@ const styles = StyleSheet.create({
     img: {
         width: width * 0.9,
         marginRight: width * 0.1,
-        borderRadius: 8,
-        height: 150,
+        borderRadius: 8
     },
     paginationStyle: {
         backgroundColor: 'rgba(0,105,148,0.4)',
@@ -61,8 +62,5 @@ const styles = StyleSheet.create({
         width: 6,
         height: 6,
         marginHorizontal: 6
-    },
-    slide:{
-        height: 150
     }
 })

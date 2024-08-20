@@ -18,8 +18,12 @@ import LinearGradient from 'react-native-linear-gradient'
 import { colors } from '../../style/Colors'
 import RightLines from '../../components/RightLines'
 import LeftLines from '../../components/LeftLines'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+
+
+    const navigation = useNavigation();
 
     return (
         <View style={globalStyles.conatiner}>
@@ -38,6 +42,7 @@ const Home = () => {
                     <View style={styles.commonWrapper}>
                         <TouchableOpacity
                             style={styles.btn}
+                            onPress={() => navigation.navigate('CourseDesc',{title: 'Digital Marketing'})}
                         >
                             <LinearGradient
                                 colors={[colors.primaryColor, colors.primaryColorRGBA]}
