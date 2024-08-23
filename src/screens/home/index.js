@@ -67,6 +67,7 @@ const Home = () => {
                         <LeftLines />
                         <TouchableOpacity
                             style={styles.btn}
+                            onPress={() => navigation.navigate('CourseDesc',{title: 'Digital Marketing'})}
                         >
                             <LinearGradient
                                 colors={[colors.primaryColor, colors.primaryColorRGBA]}
@@ -89,6 +90,7 @@ const Home = () => {
                     <View style={styles.commonWrapper}>
                         <TouchableOpacity
                             style={styles.btn}
+                            onPress={() => navigation.navigate('CourseDesc',{title: 'Digital Marketing'})}
                         >
                             <LinearGradient
                                 colors={[colors.primaryColor, colors.primaryColorRGBA]}
@@ -113,6 +115,7 @@ const Home = () => {
                         <LeftLines />
                         <TouchableOpacity
                             style={styles.btn}
+                            onPress={() => navigation.navigate('CourseDesc',{title: 'Digital Marketing'})}
                         >
                             <LinearGradient
                                 colors={[colors.primaryColor, colors.primaryColorRGBA]}

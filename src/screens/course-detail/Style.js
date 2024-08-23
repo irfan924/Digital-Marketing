@@ -193,5 +193,52 @@ export const styles = StyleSheet.create({
         width: '60%',
         height: 200
     },
+    finalWrapper:{
+        width: '100%',
+        height: 250,
+        flexDirection: 'row',
+        backgroundColor: 'rgba(0,0,0,0.03)',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    previewBtn:{
+        width: '40%',
+        paddingLeft: 12,
+        alignItems: 'center'
+    },
+    btnImg:{
+        width: '100%',
+        height: 100,
+    },
+    subDivider:{
+        // width: '10%',
+        flex: 1,
+        height: 4,
+        backgroundColor: colors.gradient1,
+        borderRadius: 2,
+    },
+    whyWrapper:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    scrollView:{
+        width: 250,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    scrollableImg:{
+        width: '50%',
+        height: 100,
+    },
+    proBtn:{
+        width: '100%',
+        height: 46,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 23,
+        backgroundColor: colors.gradient1
+    }
 
 })

@@ -11,6 +11,14 @@ import CourseDetail from './src/screens/course-detail'
 import CourseOutline from './src/screens/course-outline'
 import CourseDetailNavigation from './src/navigations/CourseDetailNavigation'
 import CourseHeader from './src/components/CourseHeader'
+import ModuleDetail from './src/screens/course-module-detail'
+import CertificatePreview from './src/screens/certificate-preview'
+import Notifications from './src/screens/notifications'
+import Sound from './src/screens/sound'
+import HelpAndFAQ from './src/screens/help&faq'
+import Help from './src/screens/help'
+import FAQS from './src/screens/faqs'
+import Science from './src/screens/science-behind-learning'
 
 
 const App = () => {
@@ -21,7 +29,8 @@ const App = () => {
     <NavigationContainer>
       <StatusBar backgroundColor={colors.primaryColor} />
       <Stack.Navigator screenOptions={{}} >
-        <Stack.Screen name='Drawer'
+        <Stack.Screen
+          name='Drawer'
           component={DrawerNavigation}
           options={{ header: () => '' }}
         />
@@ -49,7 +58,63 @@ const App = () => {
           name='CourseDesc'
           component={CourseDetailNavigation}
           options={{
-            header: () => <CourseHeader title={'Digital Marketing'}/>
+            header: () => <CourseHeader title={'Digital Marketing'} />
+          }}
+        />
+        <Stack.Screen
+          name='ModuleDetail'
+          component={ModuleDetail}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='CertificatePreview'
+          component={CertificatePreview}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='Notifications'
+          component={Notifications}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='Sound'
+          component={Sound}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='HelpAndFAQ'
+          component={HelpAndFAQ}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='Help'
+          component={Help}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='FAQS'
+          component={FAQS}
+          options={{
+            header: () => ''
+          }}
+        />
+        <Stack.Screen
+          name='Science'
+          component={Science}
+          options={{
+            header: () => ''
           }}
         />
       </Stack.Navigator>

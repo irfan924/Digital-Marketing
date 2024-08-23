@@ -10,8 +10,12 @@ import LinearGradient from 'react-native-linear-gradient'
 import { colors } from '../../style/Colors'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FastImage from 'react-native-fast-image'
+import { globalStyles } from '../../style/globalStyle'
+import { useNavigation } from '@react-navigation/native'
 
 const CourseDetail = () => {
+
+    const navigation = useNavigation();
 
     const [visible, setVisible] = useState({
         moduleTwo: false,
@@ -61,6 +65,7 @@ const CourseDetail = () => {
                             </View>
                             <TouchableOpacity
                                 style={styles.btn}
+                                onPress={() => navigation.navigate('ModuleDetail')}
                             >
                                 <Text style={styles.btnText}>
                                     Start
@@ -525,6 +530,86 @@ const CourseDetail = () => {
                     </TouchableOpacity>
                 </LinearGradient>
 
+                {/* Certificate */}
+
+                <Text style={{ ...globalStyles.mainTitle, alignSelf: 'flex-start' }}>
+                    Certificate
+                </Text>
+                <View style={styles.finalWrapper}>
+                    <TouchableOpacity
+                        style={styles.previewBtn}
+                        onPress={()=> navigation.navigate('CertificatePreview')}
+                    >
+                        <FastImage
+                            source={require('../../../assets/images/certificate.png')}
+                            style={styles.btnImg}
+                            resizeMode={FastImage.resizeMode.center}
+                        />
+                        <Text style={styles.commonTitle}>
+                            Tap to Preview
+                        </Text>
+                    </TouchableOpacity>
+                    <FastImage
+                        source={require('../../../assets/images/goal.png')}
+                        style={styles.img}
+                        resizeMode={FastImage.resizeMode.center}
+                    />
+                </View>
+
+                {/* Why Pro */}
+
+                <View style={styles.whyWrapper}>
+                    <View style={styles.subDivider}></View>
+                    <Text style={styles.activeTitle}>
+                        WHY SUBSCRIBE TO PRO
+                    </Text>
+                    <View style={styles.subDivider}></View>
+                </View>
+
+                <ScrollView
+                    contentContainerStyle={styles.bottomScroll}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}
+                >
+                    <View style={styles.scrollView}>
+                        <FastImage
+                            source={require('../../../assets/images/dm1.jpg')}
+                            style={styles.scrollableImg}
+                            resizeMode={FastImage.resizeMode.center}
+                        />
+                        <Text style={styles.activeTitle}>
+                            Get Certified
+                        </Text>
+                    </View>
+                    <View style={styles.scrollView}>
+                        <FastImage
+                            source={require('../../../assets/images/dm1.jpg')}
+                            style={styles.scrollableImg}
+                            resizeMode={FastImage.resizeMode.center}
+                        />
+                        <Text style={styles.activeTitle}>
+                            Get Certified
+                        </Text>
+                    </View>
+                    <View style={styles.scrollView}>
+                        <FastImage
+                            source={require('../../../assets/images/dm1.jpg')}
+                            style={styles.scrollableImg}
+                            resizeMode={FastImage.resizeMode.center}
+                        />
+                        <Text style={styles.activeTitle}>
+                            Get Certified
+                        </Text>
+                    </View>
+                </ScrollView>
+                <TouchableOpacity
+                    style={styles.proBtn}
+                    onPress={() => navigation.navigate('Pro')}
+                >
+                    <Text style={styles.activeTitle}>
+                        Subscribe to Pro
+                    </Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     )

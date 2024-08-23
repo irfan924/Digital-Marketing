@@ -34,7 +34,7 @@ const Pro = () => {
                         </Text>
                         <TouchableOpacity
                             style={styles.closeBtn}
-                            onPress={() => navigation.goBack()}
+                            onPress={() => navigation.navigate('Drawer',{screen:'BottomTab'})}
                         >
                             <Icon name='close' size={34} color={colors.accentColor} />
                         </TouchableOpacity>
