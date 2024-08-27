@@ -11,4 +11,5 @@ export const colors = {
     tertiaryColor: '#53a3a3',
     gradient1: 'rgba(216, 75, 212, 0.4)',
     gradient2: 'rgba(100, 231, 204, 0.73)',
+    ornage: '#f49d14'
 }

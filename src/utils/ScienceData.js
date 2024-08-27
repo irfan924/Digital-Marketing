@@ -1,4 +1,3 @@
-
 export const scienceData = [
     {
         imgUrl: require('../../assets/images/dm3d1.png'),

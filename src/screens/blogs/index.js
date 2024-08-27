@@ -2,7 +2,8 @@ import React from 'react'
 import {
     View,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native'
 import { styles } from './Style'
 import NotificationHeader from '../../components/NotificationHeader'
@@ -11,9 +12,9 @@ import { globalStyles } from '../../style/globalStyle'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 import { colors } from '../../style/Colors'
-import { scienceData } from '../../utils/scienceData'
+import { blogs } from '../../utils/blogs'
 
-const Science = () => {
+const Blogs = () => {
 
     const navigation = useNavigation();
 
@@ -22,35 +23,38 @@ const Science = () => {
             <NotificationHeader title={'Science Behind Learning'} onPress={() => navigation.goBack()} />
             <View style={styles.content}>
                 <FlatList
-                    data={scienceData}
+                    data={blogs}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.list}
+                    numColumns={2}
+                    key={2}
                     renderItem={({ item, index }) =>
-                        <View style={[styles.card, globalStyles.boxShadow]}>
+                        <TouchableOpacity
+                            style={[styles.card, globalStyles.boxShadow]}
+                            onPress={() => navigation.navigate('BlogDetail', [item])}
+                        >
                             <LinearGradient
                                 colors={[colors.gradient1, colors.gradient2]}
-                                start={{x: 0, y:0}}
-                                end={{x: 1, y:1}}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
                                 style={styles.linear}
                             >
-                            <FastImage
-                                source={item.imgUrl}
-                                style={styles.img}
-                                resizeMode={FastImage.resizeMode.contain}
-                            />
+                                <FastImage
+                                    source={item.imgUrl}
+                                    style={styles.img}
+                                    resizeMode={FastImage.resizeMode.contain}
+                                />
                             </LinearGradient>
                             <Text style={styles.title}>
                                 {item.title}
                             </Text>
-                            <Text style={globalStyles.para}>
-                                {item.desc}
-                            </Text>
-                        </View>
+                        </TouchableOpacity>
                     }
                 />
             </View>
+
         </View>
     )
 }
 
-export default Science
+export default Blogs

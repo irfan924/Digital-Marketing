@@ -3,7 +3,8 @@ import {
     View,
     Text,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native'
 import { styles } from './Style'
 import LinearGradient from 'react-native-linear-gradient'
@@ -27,7 +28,7 @@ const CourseDetail = () => {
     })
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.content}
@@ -611,7 +612,7 @@ const CourseDetail = () => {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 

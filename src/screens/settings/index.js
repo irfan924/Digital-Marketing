@@ -60,11 +60,13 @@ const Settings = () => {
                 <SettingButtons
                     title={'Official Blogs'}
                     icon={'chatbox-ellipses-outline'}
+                    onPress={() => navigation.navigate('Blogs')}
                 />
                 <View style={styles.divider}></View>
                 <SettingButtons
                     title={'Terms & Privacy Policy'}
                     icon={'notifications-circle-outline'}
+                    onPress={()=> navigation.navigate('TermsAndPrivacy')}
                 />
                 <View style={styles.divider}></View>
 
