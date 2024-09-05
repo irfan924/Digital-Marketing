@@ -1,37 +1,37 @@
 import React from 'react'
 import {
-    Dimensions,
     StyleSheet,
+    View,
 } from 'react-native'
 
-import { SwiperFlatList } from 'react-native-swiper-flatlist'
 import FastImage from 'react-native-fast-image'
 import { colors } from '../style/Colors';
+import Swiper from 'react-native-swiper';
+import { width } from '../style/Dimensions';
 
-const width = Dimensions.get('screen').width;
+
 const CustomSwiper = React.memo(({ item, height }) => {
 
     return (
-        <SwiperFlatList
-            data={item}
-            autoplay
-            autoplayDelay={3}
-            autoplayLoop
-            showPagination
-            paginationActiveColor={colors.secondaryColor}
-            paginationDefaultColor={colors.accentColor}
-            paginationStyle={styles.paginationStyle}
-            paginationStyleItem={styles.paginationStyleItem}
-            style={styles.swiper}
-            renderItem={({ item, index }) =>
-                <FastImage
-                    source={item}
-                    style={{ ...styles.img, height: height}}
-                    resizeMode={FastImage.resizeMode.cover}
-                    key={index}
-                />
-            }
-        />
+        <View style={styles.content}>
+            <Swiper
+                autoplay={true}
+                loop={true}
+                dotStyle={styles.paginationStyle}
+                activeDotColor={colors.ornage}
+            >
+                {
+                    item.map((item, index) =>
+                        <FastImage
+                            source={item}
+                            style={{ ...styles.img, height: height }}
+                            resizeMode={FastImage.resizeMode.cover}
+                            key={index}
+                        />
+                    )
+                }
+            </Swiper>
+        </View>
     )
 })
 
@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     content: {
-        width: '100%',
+        flex: 1,
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     img: {
         width: width * 0.9,
@@ -53,16 +56,16 @@ const styles = StyleSheet.create({
     },
     paginationStyle: {
         backgroundColor: 'rgba(0,105,148,0.4)',
-        height: 16,
-        alignItems: 'center',
-        borderRadius: 12
+        height: 6,
+        width: 6,
+        borderRadius: 12,
     },
     paginationStyleItem: {
         width: 6,
         height: 6,
         marginHorizontal: 6
     },
-    slide:{
+    slide: {
         height: 150
     }
 })
