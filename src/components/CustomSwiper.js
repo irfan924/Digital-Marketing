@@ -10,7 +10,7 @@ import Swiper from 'react-native-swiper';
 import { width } from '../style/Dimensions';
 
 
-const CustomSwiper = React.memo(({ item, height }) => {
+const CustomSwiper = ({ item, height }) => {
 
     return (
         <View style={styles.content}>
@@ -33,7 +33,7 @@ const CustomSwiper = React.memo(({ item, height }) => {
             </Swiper>
         </View>
     )
-})
+}
 
 export default CustomSwiper
 

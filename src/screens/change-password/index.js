@@ -5,21 +5,19 @@ import {
     ScrollView
 } from 'react-native'
 import { styles } from './Style'
-import Header from '../../components/Header'
-import ProfileInput from '../../components/ProfileInput'
-import PrimaryButton from '../../components/PrimaryButton'
 
 import auth from '@react-native-firebase/auth'
 import { useNavigation } from '@react-navigation/native'
-import { useCustomAlert } from '../../components/AlertBox'
 import { firebase } from '@react-native-firebase/firestore'
 import { encryptData } from '../../utils/encryption'
 import FastImage from 'react-native-fast-image'
+import NotificationHeader from '../../components/NotificationHeader'
+import ProfileInput from '../../components/ProfileInput'
+import PrimaryButton from '../../components/PrimaryButton'
 
 const ChangePassword = () => {
 
     const navigation = useNavigation();
-    const { showAlert } = useCustomAlert();
 
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -74,16 +72,14 @@ const ChangePassword = () => {
 
     return (
         <View style={styles.container}>
-            <Header title={'Chnage Password'} />
+            <NotificationHeader 
+            title={'Change Password'}
+            onPress={()=> navigation.goBack()}
+            />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.content}
             >
-                <Image
-                    source={require('../../../assets/images/changePass.png')}
-                    resizeMode='cover'
-                    style={styles.img}
-                />
                 <FastImage
                     source={require('../../../assets/images/changePass.png')}
                     style={styles.img}
@@ -110,7 +106,7 @@ const ChangePassword = () => {
                 />
                 <PrimaryButton
                     title={'Change Password'}
-                    onPress={handleChangePassword}
+                    // onPress={handleChangePassword}
                 />
             </ScrollView>
         </View>

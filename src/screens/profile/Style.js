@@ -77,6 +77,11 @@ export const styles = StyleSheet.create({
     },
     badgeWrapper: {
         width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 12,
+        marginVertical: 16
     },
     list: {
         width: '100%',
@@ -85,10 +90,9 @@ export const styles = StyleSheet.create({
         padding: 8
     },
     itemContainer: {
-        width: '32%',
+        width: '30%',
         backgroundColor: colors.accentColor,
         borderRadius: 8,
-        margin: 3,
         alignItems: 'center',
         padding: 4,
         shadowColor: colors.textColor,
@@ -151,5 +155,30 @@ export const styles = StyleSheet.create({
         right: 16,
         fontSize: 24,
         color: colors.primaryColor
+    },
+    loaderContainer:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loader:{
+        width: '100%',
+        height: 300
+    },
+    btn:{
+        width: '100%',
+        height: 46,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: colors.red,
+        borderRadius: 23,
+        gap: 16
+    },
+    btnText:{
+        fontSize: 20,
+        letterSpacing: 0.5,
+        color: colors.accentColor,
+        fontFamily: fonts.PoppinsMedium
     }
 })

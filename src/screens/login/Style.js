@@ -106,4 +106,24 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    loadingContainer: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imgBG: {
+        width: '60%',
+        height: '20%',
+        backgroundColor: colors.accentColor,
+        borderRadius: 4
+    },
+    img: {
+        width: '100%',
+        height: '100%'
+    }
 })

@@ -28,22 +28,33 @@ import RateNow from './src/screens/rate-now'
 import OnboardingNavigation from './src/navigations/OnboardingNavigation'
 import ResetPassword from './src/screens/reset-password'
 import LoginNavigation from './src/navigations/LoginNavigation'
+import Toast from 'react-native-toast-message';
+import Splash from './src/screens/splash'
+import SystemNavigationBar from 'react-native-system-navigation-bar'
+import Disconnected from './src/screens/disconnected'
+import EditProfile from './src/screens/edit-profile'
+import ChangePassword from './src/screens/change-password'
 
 
 const App = () => {
 
   const Stack = createStackNavigator();
 
+  SystemNavigationBar.setNavigationColor(colors.primaryColor);
+  SystemNavigationBar.navigationHide()
+
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={colors.primaryColor} />
       <Stack.Navigator screenOptions={{}} >
-
+        <Stack.Screen name='Splash' component={Splash} options={{ header: () => '' }} />
         <Stack.Screen name='Onboarding' component={OnboardingNavigation} options={{ header: () => '' }} />
         <Stack.Screen name='LoginNavigation' component={LoginNavigation} options={{ header: () => '' }} />
         <Stack.Screen name='Drawer' component={DrawerNavigation} options={{ header: () => '' }} />
         <Stack.Screen name='Tab' component={BottomTab} options={{ header: () => '' }} />
         <Stack.Screen name='Profile' component={Profile} options={{ header: () => '' }} />
+        <Stack.Screen name='EditProfile' component={EditProfile} options={{ header: () => '' }} />
+        <Stack.Screen name='ChangePassword' component={ChangePassword} options={{ header: () => '' }} />
         <Stack.Screen name='CourseDetail' component={CourseDetail} options={{ header: () => '' }} />
         <Stack.Screen name='CourseOutline' component={CourseOutline} options={{ header: () => '' }} />
         <Stack.Screen
@@ -68,7 +79,9 @@ const App = () => {
         <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} options={{ header: () => '' }} />
         <Stack.Screen name='RateNow' component={RateNow} options={{ header: () => '' }} />
         <Stack.Screen name='ResetPassword' component={ResetPassword} options={{ header: () => '' }} />
+        <Stack.Screen name='Disconnected' component={Disconnected} options={{ header: () => '' }} />
       </Stack.Navigator>
+      <Toast />
     </NavigationContainer>
   )
 }

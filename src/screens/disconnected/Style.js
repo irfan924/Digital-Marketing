@@ -5,15 +5,12 @@ export const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: colors.accentColor,
-        
-    },
-    content:{
-        padding: 12,
+        justifyContent: 'space-around',
         alignItems: 'center',
-        gap: 24
+        padding: 10
     },
-    img:{
-        width: 300,
-        height: 300
+    animation:{
+        width: '100%',
+        height: 500,
     }
 })

@@ -12,49 +12,50 @@ import { styles } from './Style'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { StackActions, useNavigation } from '@react-navigation/native'
 
-// import auth from '@react-native-firebase/auth'
-// import { firebase } from '@react-native-firebase/firestore'
-// import { useCustomAlert } from '../../components/AlertBox'
-// import generateReferralCode from '../../utils/generateReferralCode'
-// import {
-//     GoogleSignin,
-//     statusCodes,
-// } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth'
+import { firebase } from '@react-native-firebase/firestore'
+import {
+    GoogleSignin,
+    statusCodes,
+} from '@react-native-google-signin/google-signin';
 import FastImage from 'react-native-fast-image'
 import LoginInputs from '../../components/LoginInputs'
 import PrimaryButton from '../../components/PrimaryButton'
 import { colors } from '../../style/Colors'
 import Topside from '../../components/Topside'
+import Toast from 'react-native-toast-message'
+import { encryptData } from '../../utils/encryption'
 
 
 
 
 const SignUp = () => {
 
-    // useEffect(() => {
-    //     GoogleSignin.configure({
-    //         webClientId: '130344668770-i6spgb4an85aoi6ke66ra6avd1g70r9v.apps.googleusercontent.com',
-    //         offlineAccess: false
-    //     });
+    useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: '778074298721-762vt30m12gqsjkj09drk4e62oihtjl0.apps.googleusercontent.com',
+            offlineAccess: false
+        });
 
-    // }, [])
+    }, [])
 
     const [isSecure, setIsSecure] = useState(true);
 
     const navigation = useNavigation();
-    // const { showAlert } = useCustomAlert();
 
     const [userInfo, setUserInfo] = useState({
         name: '',
         email: '',
         password: '',
     })
+    const [loading, setLoading] = useState(false)
 
     // const handleUser = () => {
-    //     if (userInfo.name, userInfo.email, userInfo.password) {
+    //     if (userInfo.name && userInfo.email && userInfo.password) {
     //         const userCredential = auth()
     //             .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
     //             .then(async () => {
+    //                 setLoading(true);
     //                 await firebase
     //                     .firestore()
     //                     .collection('users')
@@ -63,84 +64,188 @@ const SignUp = () => {
     //                         name: userInfo.name,
     //                         email: userInfo.email,
     //                         password: encryptData(userInfo.password),
-    //                         referralCode: generateReferralCode(),
+    //                         logoUrl: '',
     //                     });
-    //                 showAlert('Congrats', 'Successfully Created Your Account.');
+    //                 Toast.show({ text1: 'Congrats', text2: 'Successfully Created Your Account.' });
     //                 setUserInfo((prev) => ({
     //                     name: '',
     //                     email: '',
     //                     password: '',
     //                 }))
     //                 auth().currentUser.sendEmailVerification();
-    //                 showAlert('Email Send', 'Please Check your email inbox and verify your email.')
-    //                 navigation.navigate('Login');
+
+
     //             })
     //             .catch(error => {
     //                 if (error.code === 'auth/email-already-in-use') {
-    //                     showAlert(
-    //                         'Already in Use',
-    //                         'This Email has Already Taken Please try agin with different email.'
-    //                     )
+    //                     Toast.show({
+    //                         type: 'error',
+    //                         text1: 'Already in Use',
+    //                         text2: 'This Email has Already Taken Please try agin with different email.'
+    //                     })
     //                 }
 
     //                 if (error.code === 'auth/invalid-email') {
     //                     showAlert('Invalid Email', 'That email address is invalid!');
+    //                     Toast.show({
+    //                         type: 'error',
+    //                         text1: 'Invalid Email',
+    //                         text2: 'That email address is invalid!'
+    //                     })
     //                 }
 
     //                 console.error(error);
-    //             });
+    //             })
+    //             .finally(() => {
+    //                 setLoading(false)
+    //                 navigation.navigate('Login');
+    //                 Toast.show({
+    //                     type: 'success',
+    //                     text1: 'Email Send',
+    //                     text2: 'Please Check your email inbox and verify your email.'
+    //                 })
+    //             })
 
     //     } else {
-    //         showAlert(
-    //             'Empty Fields!',
-    //             'Please Enter all required data to Regiester Yourself.'
-    //         )
+    //         Toast.show({
+    //             type: 'info',
+    //             text1: 'Empty Fields!',
+    //             text2: 'Please Enter all required data to Regiester Yourself.'
+    //         })
     //     }
 
     // }
 
-    // const handleGoogle = async () => {
-    //     try {
-    //         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    //         const { idToken } = await GoogleSignin.signIn();
+    const handleUser = () => {
+        setLoading(true);
+        if (userInfo.name && userInfo.email && userInfo.password) {
+            auth()
+                .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
+                .then(async (userCredential) => {
+                    const uid = userCredential.user.uid;
+                    await firebase
+                        .firestore()
+                        .collection('users')
+                        .doc(uid)
+                        .set({
+                            name: userInfo.name,
+                            email: userInfo.email,
+                            password: encryptData(userInfo.password), // Ensure password is encrypted
+                            logoUrl: '', // Default empty logo URL
+                        });
+                    Toast.show({ text1: 'Congrats', text2: 'Successfully Created Your Account.' });
+                    setUserInfo({
+                        name: '',
+                        email: '',
+                        password: '',
+                    });
 
-    //         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+                    userCredential.user.sendEmailVerification();
 
-    //         let res = await auth().signInWithCredential(googleCredential);
+                    navigation.navigate('Login');
+                })
+                .catch((error) => {
+                    if (error.code === 'auth/email-already-in-use') {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Already in Use',
+                            text2: 'This email has already been taken. Please try again with a different email.',
+                        });
+                    } else if (error.code === 'auth/invalid-email') {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Invalid Email',
+                            text2: 'That email address is invalid!',
+                        });
+                    } else {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Registration Error',
+                            text2: 'An error occurred during registration. Please try again.',
+                        });
+                        console.error(error);
+                    }
+                })
+                .finally(() => {
+                    setLoading(false)
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Email Sent',
+                        text2: 'Please check your email inbox and verify your email.',
+                    });
+                });
+        } else {
+            Toast.show({
+                type: 'info',
+                text1: 'Empty Fields!',
+                text2: 'Please enter all required data to register yourself.',
+            });
+        }
+    };
 
-    //         const { uid, displayName, email, photoURL } = res.user;
-    //         await firebase
-    //             .firestore()
-    //             .collection('users')
-    //             .doc(`${auth().currentUser.uid}`)
-    //             .set({
-    //                 name: displayName,
-    //                 email: email,
-    //                 referralCode: generateReferralCode(),
-    //                 logoUrl: photoURL,
-    //             });
-    //         showAlert('Congrats!', 'Successfully Logedin');
-    //         navigation.dispatch(StackActions.replace('Tab'));
-    //     } catch (error) {
-    //         switch (error.code) {
-    //             case statusCodes.SIGN_IN_CANCELLED:
-    //                 showAlert('Cancel', 'You are cance the google Dialog Box')
-    //                 break;
-    //             case statusCodes.IN_PROGRESS:
-    //                 showAlert('In Progress', '(eg. sign in) already in progress')
-    //                 break;
-    //             case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-    //                 showAlert('Not Available', 'play services not available or outdated')
-    //                 break;
-    //             default:
-    //                 showAlert('Error Found', `${error}`)
-    //         }
-    //     }
-    // }
+
+    const handleGoogle = async () => {
+        try {
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+            const { idToken } = await GoogleSignin.signIn();
+
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+            let res = await auth().signInWithCredential(googleCredential);
+
+            const { uid, displayName, email, photoURL } = res.user;
+            await firebase
+                .firestore()
+                .collection('users')
+                .doc(`${auth().currentUser.uid}`)
+                .set({
+                    name: displayName,
+                    email: email,
+                    logoUrl: photoURL,
+                });
+            Toast.show({
+                type: 'success',
+                text1: 'Congrats!',
+                text2: 'Successfully Logedin'
+            });
+            navigation.dispatch(StackActions.replace('Drawer'));
+        } catch (error) {
+            switch (error.code) {
+                case statusCodes.SIGN_IN_CANCELLED:
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Cancel',
+                        text2: 'You are cance the google Dialog Box'
+                    })
+                    break;
+                case statusCodes.IN_PROGRESS:
+                    Toast.show({
+                        type: 'error',
+                        text1: 'In Progress',
+                        text2: '(eg. sign in) already in progress'
+                    })
+                    break;
+                case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+                    Toast.show('Not Available', 'play services not available or outdated')
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Not Available',
+                        text2: 'Play services not available or outdated'
+                    })
+                    break;
+                default:
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Error Found',
+                        text2: `${error}`
+                    })
+            }
+        }
+    }
 
     return (
         <View style={styles.container}>
-            <Topside/>
+            <Topside />
             <ScrollView>
                 <FastImage
                     source={require('../../../assets/images/login.png')}
@@ -187,7 +292,7 @@ const SignUp = () => {
                     </View>
                     <PrimaryButton
                         title={'Signup'}
-                        onPress={()=> navigation.dispatch(StackActions.replace('Drawer'))}
+                        onPress={handleUser}
                     />
                     <TouchableOpacity
                         onPress={() => {
@@ -207,7 +312,7 @@ const SignUp = () => {
                     </View>
                     <TouchableOpacity
                         style={{ ...styles.loginBtn, backgroundColor: colors.ornage }}
-                    // onPress={handleGoogle}
+                        onPress={handleGoogle}
                     >
                         <View style={styles.logoView}>
                             <Icon name='logo-google' size={24} color={colors.ornage} />
@@ -218,6 +323,20 @@ const SignUp = () => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
+
+            {
+                loading &&
+                <View style={styles.loadingContainer}>
+                    <View style={styles.imgBG}>
+                        <FastImage
+                            source={require('../../../assets/images/loader.gif')}
+                            resizeMode={FastImage.resizeMode.center}
+                            tintColor={colors.primaryColor}
+                            style={styles.img}
+                        />
+                    </View>
+                </View>
+            }
         </View>
     )
 }

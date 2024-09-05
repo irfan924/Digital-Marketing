@@ -27,6 +27,7 @@ const LoginInputs = ({ onChange, onChangeText, placeholder, icon, secureTextEntr
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}
                 value={value}
+                
             />
         </View>
     )

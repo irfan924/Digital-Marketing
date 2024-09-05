@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
     },
     animationView: {
         width: '100%',
+        height: 200
     },
     priceWrapper: {
         backgroundColor: colors.accentColor,
